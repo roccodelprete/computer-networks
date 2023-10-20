@@ -1,9 +1,9 @@
 #include "lib.h"
 
 int main() {
-    int socketDescriptor, connectionDescriptor;
+    int socketDescriptor, connectionDescriptor, charactersWritten;
     struct sockaddr_in server;
-    char buffer[4096];
+    char buffer[100] = {'p', 'r', 'o', 'v', 'a'};
     time_t ticks = time(NULL);
 
     socketDescriptor = openSocket(AF_INET, SOCK_STREAM, 0);
@@ -17,11 +17,15 @@ int main() {
 
     while (1) {
         connectionDescriptor = acceptConnection(socketDescriptor, (struct sockaddr *) NULL, NULL);
-        snprintf(buffer, sizeof(buffer), "%.24s\r\n", ctime(&ticks));
-        if ((write(connectionDescriptor, buffer, strlen(buffer))) != strlen(buffer)) {
-            perror("Error writing...\n");
+        /* Disable this line to test fullRead and fullWrite */
+        // snprintf(buffer, sizeof(buffer), "%.24s\r\n", ctime(&ticks));
+
+        charactersWritten = fullWrite(connectionDescriptor, buffer, sizeof(buffer));
+
+        if (charactersWritten <= 0) {
             exit(1);
         }
+
         close(connectionDescriptor);
     }
 }

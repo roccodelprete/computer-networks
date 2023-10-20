@@ -21,17 +21,14 @@ int main(int argc, char **argv) {
     portToNetwork(AF_INET, argv, client.sin_addr);
     connectToSocket(socketDescriptor, (struct sockaddr *) &client, sizeof(client));
 
-    while ((numBytesRead = read(socketDescriptor, receiptLine, 1024)) > 0) {
-        receiptLine[numBytesRead] = 0;
-
-        if (fputs(receiptLine, stdout) == EOF) {
-            perror("fputs error...\n");
-            exit(1);
-        }
-    }
+    numBytesRead = fullRead(socketDescriptor, receiptLine, sizeof(receiptLine));
 
     if (numBytesRead < 0) {
-        perror("read error...\n");
+        exit(1);
+    }
+
+    if (fputs(receiptLine, stdout) == EOF) {
+        perror("fputs error...\n");
         exit(1);
     }
 

@@ -60,44 +60,40 @@ ssize_t fullWrite(int fileDescriptor, const void *buffer, size_t count) {
     charactersLeft = count;
 
     while (charactersLeft > 0) {
-        if ((charactersWritten = write(fileDescriptor, buffer, charactersLeft)) > 0) {
+        if ((charactersWritten = write(fileDescriptor, buffer, charactersLeft)) < 0) {
             if (errno == EINTR) {
                 continue;
             } else {
                 perror("system call EINTR");
+                exit(1);
             }
-            charactersLeft -= charactersWritten;
-            buffer += charactersWritten;
-        } else {
-            perror("write");
         }
+        charactersLeft -= charactersWritten;
+        buffer += charactersWritten;
     }
-    return charactersLeft;
+    return (charactersLeft);
 }
 
 ssize_t fullRead(int fileDescriptor, void *buffer, size_t count) {
     size_t charactersLeft;
     ssize_t charactersRead;
     charactersLeft = count;
+
     while (charactersLeft > 0) {
-        if ((charactersRead = read(fileDescriptor, buffer, count)) > 0) {
+        if ((charactersRead = read(fileDescriptor, buffer, count)) < 0) {
             if (errno == EINTR) {
                 continue;
             } else {
                 perror("system call EINTR");
+                exit(1);
             }
-
-            charactersLeft -= charactersRead;
-            buffer += charactersRead;
-            buffer = 0;
-
-            if (EOF) {
-                break;
-            }
-        } else {
-            perror("read");
+        } else if (charactersRead == 0) /* EOF */ {
+            break;
         }
+        charactersLeft -= charactersRead;
+        buffer += charactersRead;
     }
-    return charactersLeft;
+    buffer = 0;
+    return (charactersLeft);
 }
 
