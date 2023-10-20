@@ -80,7 +80,7 @@ ssize_t fullRead(int fileDescriptor, void *buffer, size_t count) {
     charactersLeft = count;
 
     while (charactersLeft > 0) {
-        if ((charactersRead = read(fileDescriptor, buffer, count)) < 0) {
+        if ((charactersRead = read(fileDescriptor, buffer, charactersLeft)) < 0) {
             if (errno == EINTR) {
                 continue;
             } else {
