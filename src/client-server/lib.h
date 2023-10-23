@@ -1,6 +1,10 @@
 //
-// Created by Rocco Del Prete on 16/10/23.
+// Created by Rocco Del Prete on 23/10/23.
 //
+
+#ifndef CLIENT_SERVER_LIB_H
+#define CLIENT_SERVER_LIB_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,9 +14,6 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <errno.h>
-
-#ifndef CLIENT_SERVER_LIB_H
-#define CLIENT_SERVER_LIB_H
 
 /**
  * function to create a socket

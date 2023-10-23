@@ -3,7 +3,7 @@ project(client_server C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(client_server client.c
+add_executable(client_server server.c
         lib.c
         lib.h
-        server.c)
+        client.c)
