@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     numBytesRead = fullRead(socketDescriptor, receiptLine, sizeof(receiptLine));
 
     if (numBytesRead < 0) {
-        exit(1);
+        exit(2);
     }
 
     if (fputs(receiptLine, stdout) == EOF) {
