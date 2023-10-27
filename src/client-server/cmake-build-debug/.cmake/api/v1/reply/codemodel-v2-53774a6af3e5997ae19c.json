@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "client_server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client_server-Debug-173bbe417f39b55f93b5.json",
+					"jsonFile" : "target-client_server-Debug-23876ba0a003efd30936.json",
 					"name" : "client_server",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/roccodelprete/Documents/universit\u00e0/computer-networks/src/client-server/cmake-build-debug",
-		"source" : "/Users/roccodelprete/Documents/universit\u00e0/computer-networks/src/client-server"
+		"build" : "/home/rocco/Documenti/uni/computer-networks/src/client-server/cmake-build-debug",
+		"source" : "/home/rocco/Documenti/uni/computer-networks/src/client-server"
 	},
 	"version" : 
 	{
