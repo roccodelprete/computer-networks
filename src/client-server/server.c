@@ -5,6 +5,7 @@ int main() {
     struct sockaddr_in server, client;
     socklen_t length;
     char buffer[1024];
+    memset(buffer, 0, sizeof(buffer));
     time_t timeVal = time(NULL);
     int logging = 1;
     pid_t pid;
@@ -48,7 +49,6 @@ int main() {
     socketInListenMode(socketDescriptor, 20);
 
     while (1) {
-        memset(buffer, 0, sizeof(buffer));
         length = sizeof(client);
         connectionDescriptor = acceptConnection(socketDescriptor, (struct sockaddr *) NULL, NULL);
 
