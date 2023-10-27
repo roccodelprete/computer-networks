@@ -27,11 +27,21 @@ int openSocket(int IPFamily, int type, int protocol);
 
 /**
  * function to associate port to network
+ * using inet_pton
  * @param IPFamily – IP addresses family
  * @param argv – buffer arguments passed from terminal
  * @param sin_addr – IP address
  */
 void portToNetwork(int IPFamily, char **argv, struct in_addr sin_addr);
+
+/**
+ * function to associate port to network
+ * using inet_ntop
+ * @param IPFamily – IP addresses family
+ * @param argv – buffer arguments passed from terminal
+ * @param sin_addr – IP address
+ */
+void portToNetworkNtop(int IPFamily, struct in_addr *sin_addr, char *buffer, socklen_t length);
 
 /**
  * function to connect socket to IP address

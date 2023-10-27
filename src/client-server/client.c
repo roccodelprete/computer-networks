@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     socketDescriptor = openSocket(AF_INET, SOCK_STREAM, 0);
 
     client.sin_family = AF_INET;
-    client.sin_port = htons(1025);
+    client.sin_port = htons(1024);
 
     portToNetwork(AF_INET, argv, client.sin_addr);
     connectToSocket(socketDescriptor, (struct sockaddr *) &client, sizeof(client));

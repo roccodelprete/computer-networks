@@ -8,7 +8,7 @@ int openSocket(int IPFamily, int type, int protocol) {
     int socketDescriptor;
 
     if ((socketDescriptor = socket(IPFamily, type, protocol)) < 0) {
-        perror("Error in socket opening...\n");
+        perror("socket\n");
         exit(1);
     }
 
@@ -17,28 +17,35 @@ int openSocket(int IPFamily, int type, int protocol) {
 
 void portToNetwork(int IPFamily, char **argv, struct in_addr sin_addr) {
     if ((inet_pton(IPFamily, argv[1], &sin_addr)) <= 0) {
-        perror("Error in pton function...\n");
+        perror("pton");
+        exit(1);
+    }
+}
+
+void portToNetworkNtop(int IPFamily, struct in_addr *sin_addr, char *buffer, socklen_t length) {
+    if ((inet_ntop(IPFamily, sin_addr, buffer, length)) == NULL) {
+        perror("ntop");
         exit(1);
     }
 }
 
 void connectToSocket(int socketDescriptor, struct sockaddr *socketInfos, int size) {
     if ((connect(socketDescriptor, socketInfos, size)) < 0) {
-        perror("Error to connect to socket...\n");
+        perror("connect");
         exit(1);
     }
 }
 
 void assignAddress(int socketDescriptor, struct sockaddr *socketInfos, int size) {
     if ((bind(socketDescriptor, socketInfos, size)) < 0) {
-        perror("Error assigning address...\n");
+        perror("bind");
         exit(1);
     }
 }
 
 void socketInListenMode(int socketDescriptor, int length) {
     if ((listen(socketDescriptor, length)) < 0) {
-        perror("Error in socket listening...\n");
+        perror("listen");
         exit(1);
     }
 }
@@ -47,7 +54,7 @@ int acceptConnection(int socketDescriptor, struct sockaddr *client, socklen_t *a
     int connectionDescriptor;
 
     if ((connectionDescriptor = accept(socketDescriptor, client, addressSize)) < 0) {
-        perror("Error accepting connection...\n");
+        perror("accept");
         exit(1);
     }
 
