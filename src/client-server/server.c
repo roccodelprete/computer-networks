@@ -1,6 +1,15 @@
 #include "lib.h"
 
+int clientsNumber = 0;
+
+void handler() {
+    clientsNumber++;
+    printf("Client number %d\n", clientsNumber);
+}
+
 int main() {
+    signal(SIGCHLD, (void (*)(int))handler);
+
     int socketDescriptor, connectionDescriptor, charactersWritten;
     struct sockaddr_in server, client;
     socklen_t length;
@@ -59,13 +68,12 @@ int main() {
 
         if (pid == 0) {
             close(socketDescriptor);
-
             snprintf(buffer, sizeof(buffer), "%.24s\r\n", ctime(&timeVal));
             charactersWritten = fullWrite(connectionDescriptor, buffer, sizeof(buffer));
 
             if (logging) {
                 portToNetworkNtop(AF_INET, &(client.sin_addr), buffer, sizeof(buffer));
-                printf("Request from host %s, port %d\n", buffer, ntohs(client.sin_port));
+                printf("\nRequest from host %s, port %d\n", buffer, ntohs(client.sin_port));
             }
 
             close(connectionDescriptor);
