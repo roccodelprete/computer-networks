@@ -1,3 +1,0 @@
-/home/rocco/Documenti/uni/computer-networks/src/client-server/cmake-build-debug/CMakeFiles/client_server.dir
-/home/rocco/Documenti/uni/computer-networks/src/client-server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/rocco/Documenti/uni/computer-networks/src/client-server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
