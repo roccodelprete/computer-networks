@@ -31,7 +31,7 @@ int openSocket(int IPFamily, int type, int protocol);
  * using inet_pton
  * @param IPFamily IP addresses family
  * @param argv buffer arguments passed from terminal
- * @param sin_addr – IP address
+ * @param sin_addr IP address
  */
 void portToNetwork(int IPFamily, char **argv, struct in_addr sin_addr);
 
