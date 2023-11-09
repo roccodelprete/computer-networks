@@ -15,6 +15,13 @@ int openSocket(int IPFamily, int type, int protocol) {
     return socketDescriptor;
 }
 
+void portToNetworkWithHostname(int IPFamily, char **host, struct in_addr sin_addr) {
+    if ((inet_pton(IPFamily, host[0], &sin_addr)) < 0) {
+        perror("pton");
+        exit(1);
+    }
+}
+
 void portToNetwork(int IPFamily, char **argv, struct in_addr sin_addr) {
     if ((inet_pton(IPFamily, argv[1], &sin_addr)) <= 0) {
         perror("pton");

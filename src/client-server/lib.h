@@ -15,6 +15,7 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <signal.h>
+#include <netdb.h>
 
 /**
  * function to create a socket
@@ -34,6 +35,15 @@ int openSocket(int IPFamily, int type, int protocol);
  * @param sin_addr IP address
  */
 void portToNetwork(int IPFamily, char **argv, struct in_addr sin_addr);
+
+/**
+ * function to associate port to network
+ * using inet_pton with given host name
+ * @param IPFamily IP addresses family
+ * @param argv buffer arguments passed from terminal
+ * @param sin_addr IP address
+ */
+void portToNetworkWithHostname(int IPFamily, char **host, struct in_addr sin_addr);
 
 /**
  * function to associate port to network
